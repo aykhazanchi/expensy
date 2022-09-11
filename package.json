@@ -1,0 +1,29 @@
+{
+  "name": "expensy",
+  "version": "1.0.0",
+  "description": "Simple expense tracker",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend"
+  },
+  "author": "Ayushman Khazanchi",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^4.3.1",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^6.14.2",
+    "prisma": "^4.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0",
+    "nodemon": "^2.0.19"
+  }
+}
