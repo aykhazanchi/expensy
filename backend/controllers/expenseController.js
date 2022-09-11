@@ -106,8 +106,8 @@ const clearDB = asyncHandler(async (req, res) => {
   }
 
   try {
-    const delUsers = await prisma.user.deleteMany({});
     const delExpense = await prisma.expense.deleteMany({});
+    const delUsers = await prisma.user.deleteMany({});
 
     res.status(200).json('DB deleted...');
   } catch (error) {
