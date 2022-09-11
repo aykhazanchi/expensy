@@ -1,5 +1,6 @@
 Simple Expense Tracker
 
+### For Local Dev Setup
 1. Setup new DB `npx prisma migrate dev --name init`
 2. Start server `npm run server`
 3. Add user via curl `curl -X POST -H 'Content-Type: application/json' -d '{"username":"testuser"}' localhost:3000/add/user`
@@ -9,3 +10,8 @@ Simple Expense Tracker
 7. Get all expenses of user with userId `1`: `curl http://localhost:3000/user/1`
 8. Get all expenses created regardless of user `curl http://localhost:3000/expenses`
 9. Delete everything and clear DB: `curl http://localhost:3000/delete`
+
+### For Docker Setup
+1. `docker build . -t expensy`
+2. `docker run -p 3000:3000 expensy`
+3. Use API curl commands from hereon
