@@ -30,21 +30,31 @@ const newExpense = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const amount = Number(req.body.amount);
-  const merchant = req.body.merchant;
-  const userId = Number(req.body.userId);
+  let expenses = [];
 
-  try {
-    const newExpense = await prisma.expense.create({
-      data: {
-        amount: amount,
-        merchant: merchant,
-        userId: userId,
-      },
+  if (req.body instanceof Array) {
+    req.body.forEach((exp) => {
+      expenses.push(exp);
     });
-    res.status(200).json(newExpense);
+  }
+  try {
+    expenses.forEach(async (exp) => {
+      console.log(exp);
+      const newExpense = await prisma.expense.create({
+        data: {
+          amount: exp.amount,
+          merchant: exp.merchant,
+          userId: Number(exp.userId),
+        },
+      });
+    });
   } catch (error) {
+    errors.push(error);
+  }
+  if (!errors.isEmpty()) {
     res.status(400).send(error.message);
+  } else {
+    res.status(200).json(expenses);
   }
 });
 
