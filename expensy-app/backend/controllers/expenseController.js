@@ -24,7 +24,7 @@ const newUser = asyncHandler(async (req, res) => {
   }
 });
 
-const newExpense = asyncHandler(async (req, res) => {
+const newExpense = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -36,6 +36,8 @@ const newExpense = asyncHandler(async (req, res) => {
     req.body.forEach((exp) => {
       expenses.push(exp);
     });
+  } else {
+    expenses.push(req.body);
   }
   try {
     expenses.forEach(async (exp) => {
@@ -56,7 +58,7 @@ const newExpense = asyncHandler(async (req, res) => {
   } else {
     res.status(200).json(expenses);
   }
-});
+};
 
 const getUser = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
