@@ -40,16 +40,11 @@ const newExpense = async (req, res) => {
     expenses.push(req.body);
   }
   try {
-    expenses.forEach(async (exp) => {
-      console.log(exp);
-      const newExpense = await prisma.expense.create({
-        data: {
-          amount: exp.amount,
-          merchant: exp.merchant,
-          userId: Number(exp.userId),
-        },
-      });
+    console.log(expenses);
+    const newExpense = await prisma.expense.createMany({
+      data: expenses,
     });
+   
   } catch (error) {
     errors.push(error);
   }
