@@ -30,28 +30,17 @@ const newExpense = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  let expenses = [];
-
-  if (req.body instanceof Array) {
-    req.body.forEach((exp) => {
-      expenses.push(exp);
-    });
-  } else {
-    expenses.push(req.body);
-  }
   try {
-    console.log(expenses);
     const newExpense = await prisma.expense.createMany({
-      data: expenses,
+      data: req.body,
     });
-   
   } catch (error) {
-    errors.push(error);
+    console.error(error);
   }
   if (!errors.isEmpty()) {
     res.status(400).send(error.message);
   } else {
-    res.status(200).json(expenses);
+    res.status(200).json('Expense successfully added...');
   }
 };
 
