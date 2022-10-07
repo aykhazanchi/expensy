@@ -5,6 +5,8 @@ networks:
 volumes:
     prometheus_data: {}
     grafana_data: {}
+    db:
+      driver: local
 services:
   prometheus:
     image: prom/prometheus:v2.20.1
@@ -46,5 +48,20 @@ services:
       - 8080:8080
     expose:
       - 8080
+      - 3306
     networks:
       - monitoring
+  mysql:
+    image: mysql:8.0.3
+    networks:
+      - monitoring
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
