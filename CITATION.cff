@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Khazanchi"
+  given-names: "Ayushman"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Björnsson"
+  given-names: "Valdimar"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "Expensy App"
+version: 1.0.0
+doi: 10.5281/zenodo.7194417
+date-released: 2022-10-13
+url: "https://github.com/aykhazanchi/expensy"
